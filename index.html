@@ -61,6 +61,16 @@
   
   .nav-seal > img {
     width: 50px;
+    animation: logoRotate infinite linear 4s;
+  }
+
+  @keyframes logoRotate {
+    from {
+     transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .nav-text { color: var(--white); }
@@ -81,17 +91,102 @@
   .nav-links a:hover::after { width: 100%; }
 
   /* ── HERO ─────────────────────────────────────── */
-  .hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 7rem 5% 4rem;
-    position: relative; z-index: 1;    
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,127,116,.18) 0%, transparent 70%),
-      linear-gradient(170deg, #0d1b2a 0%, #112233 60%, #0d1b2a 100%);
+ /* HERO CONTAINER */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 7rem 5% 4rem;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+
+  /* Base gradient background */
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26,127,116,.18) 0%, transparent 70%),
+    linear-gradient(170deg, #0d1b2a 0%, #112233 60%, #0d1b2a 100%);
+}
+
+/* IMAGE LAYER */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("./OLS.jpg") center/cover no-repeat;
+
+  opacity: 0;
+  z-index: 0;
+
+  animation: heroImage 8s ease-in-out infinite;
+}
+
+/* HERO CONTENT ABOVE IMAGE */
+.hero h1, .hero-badge, .hero-sub, .hero-badge svg, .btn-primary , .hero-law, .hero-cta, .btn {
+  position: relative;
+  z-index: 2;
+  animation: heroText 8s ease-in-out infinite !important;
+}
+
+/* IMAGE FADE IN */
+@keyframes heroImage {
+
+  0% {
+    opacity: 0;
   }
+
+  30% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* TEXT DISAPPEARS WHEN IMAGE APPEARS */
+@keyframes heroText {
+
+  0% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* / Animation of Hero Background and Texts */
 
   .hero-badge {
     display: inline-flex; align-items: center; gap: .5rem;
@@ -123,6 +218,7 @@
     margin: 0 auto 2.5rem;
     animation: fadeUp .9s .28s ease both;
   }
+
 
   .hero-law {
     font-size: .8rem; letter-spacing: .12em; color: var(--gold);
@@ -409,7 +505,8 @@
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.25C17.25 22.15 21 17.25 21 12V7L12 2z"/></svg>
     Republic Act No. 11313
   </div>
-  <h1>The <em>Safe Spaces</em><br>Act</h1>
+  <h1 id="Blink">The <em>Safe Spaces</em><br>Act</h1>
+ 
   <p class="hero-law">Bawal Bastos Law &nbsp;·&nbsp; Philippines</p>
   <p class="hero-sub">Protecting every individual from gender-based sexual harassment in streets, public spaces, online spaces, workplaces, and educational institutions.</p>
   <div class="hero-cta">
@@ -419,7 +516,6 @@
     </a>
     <a href="#contact" class="btn btn-outline">Contact CODI</a>
   </div>
-
 </section>
 
 <!-- ABOUT -->
